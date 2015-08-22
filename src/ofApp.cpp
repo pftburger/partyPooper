@@ -5,6 +5,7 @@ tableObject tableObjects::newTableObject(ofxCvColorImage CvImage, ofPoint pos, o
     myNewTableObject.pos        = pos;
     myNewTableObject.size       = size;
     myNewTableObject.CvImage    = CvImage;
+    myNewTableObject.alive      = true;
     
     return myNewTableObject;
     
@@ -16,14 +17,14 @@ bool tableObjects::isNew(tableObject object){
     
 }
 
-bool tableObjects::add(ofxCvColorImage image, ofPoint pos,ofVec2f size){
+bool tableObjects::tryAdd(ofxCvColorImage image, ofPoint pos,ofVec2f size){
     tableObject myNewTableObject = newTableObject(image, pos, size);
     
     if (isNew(myNewTableObject)){
-        
+        this->objects.push_back(myNewTableObject);
     }
     
-    
+    return true;
     
 }
 
@@ -41,6 +42,10 @@ void ofApp::setup(){
     
     bLearnBakground = true;
     threshold = 80;
+    
+    
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -67,7 +72,14 @@ void ofApp::update(){
         
         // find contours which are between the size of 20 pixels and 1/3 the w*h pixels.
         // also, find holes is set to true so we will get interior contours as well....
-        contourFinder.findContours(grayDiff, 20, (340*240)/3, 10, true);	// find holes
+        contourFinder.findContours(grayDiff, 20, (340*240)/3, 10, false);
+        
+        for (int i = 0; i < contourFinder.blobs.size(); i++) {
+            
+            tableObject myNewTableObject = newTableObject(colorImg, contourFinder.blobs[i].centroid, size);
+            
+            myTableObjects.tryAdd(<#ofxCvColorImage image#>, <#ofPoint pos#>, <#ofVec2f size#>)
+        }
     }
 }
 
@@ -117,7 +129,8 @@ void ofApp::draw(){
     reportStr << "bg subtraction and blob detection" << endl
     << "press ' ' to capture bg" << endl
     << "threshold " << threshold << " (press: +/-)" << endl
-    << "num blobs found " << contourFinder.nBlobs << ", fps: " << ofGetFrameRate();
+    << "num blobs found " << contourFinder.nBlobs << ", fps: " << ofGetFrameRate()  << endl
+    << "tableObjects " << myTableObjects.objects.size();
     ofDrawBitmapString(reportStr.str(), 20, 600);
 }
 

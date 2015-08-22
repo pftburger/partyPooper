@@ -4,6 +4,7 @@
 #include "ofxOpenCv.h"
 
 struct tableObject {
+public:
     ofImage             image;
     ofxCvColorImage     CvImage;
     ofPoint             pos;
@@ -17,11 +18,11 @@ struct tableObject {
 
 class tableObjects {
 
-    
+public:
     vector<tableObject>  objects;
     
     bool isNew(tableObject object);
-    bool add(ofxCvColorImage image, ofPoint pos, ofVec2f size);
+    bool tryAdd(ofxCvColorImage image, ofPoint pos, ofVec2f size);
     tableObject newTableObject(ofxCvColorImage CvImage, ofPoint pos, ofVec2f size);
     
     
@@ -47,7 +48,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
     
-        tableObjects            myTableObjects;
+        tableObjects        myTableObjects;
     
         ofVideoGrabber 		vidGrabber;
     
