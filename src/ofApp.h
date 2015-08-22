@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+<<<<<<< HEAD
 #include "ofxOpenCv.h"
 
 struct tableObject {
@@ -29,6 +30,8 @@ public:
 };
 
 
+=======
+>>>>>>> parent of 5446254... working
 
 class ofApp : public ofBaseApp{
 
@@ -46,6 +49,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+<<<<<<< HEAD
 
     
         tableObjects        myTableObjects;
@@ -64,5 +68,7 @@ class ofApp : public ofBaseApp{
         bool				bLearnBakground;
     
     
+=======
+>>>>>>> parent of 5446254... working
 		
 };

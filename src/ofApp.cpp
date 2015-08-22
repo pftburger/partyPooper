@@ -1,5 +1,6 @@
 #include "ofApp.h"
 
+<<<<<<< HEAD
 tableObject tableObjects::newTableObject(ofxCvColorImage CvImage, ofPoint pos, ofVec2f size){
     tableObject myNewTableObject;
     myNewTableObject.pos        = pos;
@@ -46,10 +47,16 @@ void ofApp::setup(){
     
     
     
+=======
+//--------------------------------------------------------------
+void ofApp::setup(){
+
+>>>>>>> parent of 5446254... working
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+<<<<<<< HEAD
     ofBackground(100,100,100);
     
     bool bNewFrame = false;
@@ -81,10 +88,14 @@ void ofApp::update(){
             myTableObjects.tryAdd(<#ofxCvColorImage image#>, <#ofPoint pos#>, <#ofVec2f size#>)
         }
     }
+=======
+
+>>>>>>> parent of 5446254... working
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+<<<<<<< HEAD
     
     // draw the incoming, the grayscale, the bg and the thresholded difference
     ofSetHexColor(0xffffff);
@@ -132,24 +143,13 @@ void ofApp::draw(){
     << "num blobs found " << contourFinder.nBlobs << ", fps: " << ofGetFrameRate()  << endl
     << "tableObjects " << myTableObjects.objects.size();
     ofDrawBitmapString(reportStr.str(), 20, 600);
+=======
+
+>>>>>>> parent of 5446254... working
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    
-    switch (key){
-        case ' ':
-            bLearnBakground = true;
-            break;
-        case '+':
-            threshold ++;
-            if (threshold > 255) threshold = 255;
-            break;
-        case '-':
-            threshold --;
-            if (threshold < 0) threshold = 0;
-            break;
-    }
 
 }
 
